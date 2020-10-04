@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'Bates_Energy/css/index.css' %}?{% now 'U' %}"/>
+    <title>Bates Eco Site</title>
+
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+
+<!--    <script defer src="/__/firebase/7.9.1/firebase-app.js"></script>-->
+<!--    <script defer src="/__/firebase/init.js"></script>-->
+  </head>
+  <body>
+    <!-- Welcome to the eco reps site. Here is just some sample plotting that we will expand on...<br><br>- Leo and Fahim<br><br> -->
+    <!-- <div class="chart"></div> -->
+<!--    <img src="bobcat.png" alt="Bobcat">-->
+    <h1 class="header">
+      Bates Energy Consumption Profile
+    </h1>
+    <div class="instructions">
+      <ul>
+        <li>Select a building name to view its energy consumption profile</li>
+        <li>Make box selection on the bottom plot to view focused time-period on the top plot</li>
+        <li>Hover mouse over the top plot and use mouse pad to zoom in/out and drag focused time-period</li>
+      </ul>
+    </div>
+    <div id="vis-container"></div>
+      <script type="module" src ="{% static 'Bates_Energy/js/main.js' %}?{% now 'U' %}"></script>
+    <!--<script type="module" src="main.js"></script>-->
+    <!-- <script type="module" src="get_data.js"></script> -->
+  {{url}}
+  </body>
+</html>

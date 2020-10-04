@@ -1,0 +1,156 @@
+/* main_analysis */
+
+/* svg {
+    font: 10px sans-serif;
+}
+.focusBackground {
+    fill: white;
+}
+.snapshot {
+    opacity: 0.2;
+    fill-opacity: .2;
+}
+.daily {
+    fill: steelblue;
+}
+.max {
+    fill: none;
+    stroke: #f00;
+}
+.mean {
+    stroke: blue;
+    fill: steelblue;
+}
+.min {
+    fill: none;
+    stroke: #0f0;
+}
+.sd {
+    fill: none;
+    stroke: #ff0;
+}
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+.brushSnapshot {
+    stroke: #999;
+    stroke-dasharray: 5, 5;
+    shape-rendering: crispEdges;
+    //z-index: 10;
+}
+#csvdata {
+    display: none;
+} */
+
+
+/* temp */
+
+/* svg {
+  font: 10px sans-serif;
+}
+
+
+.bar {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.subBar {
+  fill: gray;
+  opacity: 0.5;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill: steelblue;
+  fill-opacity: .25;
+  shape-rendering: crispEdges;
+} */
+
+/* main */
+body {
+  text-align: center;
+  background: whitesmoke;
+}
+
+.header {
+  color: #881124;
+}
+
+.instructions {
+  background: antiquewhite;
+  display: flex;
+  justify-content: center;
+  text-align: start;
+  color: #881124;
+  margin-left: 250px;
+  margin-right: 250px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#vis-container {
+  margin: 50px;
+}
+
+img {
+  height: 100px;
+  margin-top: 10px;
+}
+
+svg {
+  font: 11px sans-serif;
+  background: white;
+  margin-bottom: 100px;
+}
+
+select {
+  height: 25px;
+  width: 250px;
+  font-size: 15px;
+  color: #881124;
+}
+
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+  fill-opacity: .99;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.xy circle {
+    fill: steelblue;
+    stroke: black;
+
+}
