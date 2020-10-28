@@ -60,7 +60,8 @@ dropdown
 
 function updateBars(name) {
   var src = window.location.href+`processed_data/${name}`;
-  d3.csv(src, function(error, data) {
+//  window.location = window.location.href+`processed_data/${name}`
+  d3.json(src, function(error, data) {
     if (error) throw error;
 
     var parseTime = d3.time.format('%Y-%m-%d-%H-%M').parse;

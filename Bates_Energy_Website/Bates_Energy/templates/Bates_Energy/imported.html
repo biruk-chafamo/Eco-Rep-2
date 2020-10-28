@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>import csv</title>
+</head>
+<body>
+<form action="{% url 'Bates_Energy:import_data' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ csv_upload_form }}
+        <input type="submit" value="Upload">
+</form>
+</body>
+</html>
