@@ -6,22 +6,11 @@ from django.http import JsonResponse
 from django.urls import reverse
 from .forms import *
 from django.contrib.admin.views.decorators import staff_member_required
-
-import os
-import json
+from django.core import serializers
 
 
 def index(request):
     return render(request, 'Bates_Energy/index.html')
-
-
-# def processed_data(request, name):
-#     csv_file = open(os.path.join(settings.BASE_DIR, f'processed_data/{name}.csv'))
-#     return HttpResponse(csv_file, content_type="text/csv")
-
-from django.template import loader
-
-from django.core import serializers
 
 
 def processed_data(request, name):
@@ -34,14 +23,6 @@ def processed_data(request, name):
     actual_data = [d['fields'] for d in data]
 
     return JsonResponse(actual_data, safe=False)
-
-# def processed_data(request, name):
-#     observations = Observation.objects.filter(building=name)
-#     metricCount = [obs.count for obs in observations]
-#     metricMonths = [obs.month for obs in observations]
-#
-#     context = {'metricCount':metricCount, 'metricMonths':metricMonths}
-#     return render(request, 'Bates_Energy/index2.html', context)
 
 
 @staff_member_required
