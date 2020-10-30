@@ -58,8 +58,7 @@ class DataInput(forms.Form):
                 Observation(
                     building=building,
                     Quantity=obs,
-                    Day=energy.index[i].strftime('%Y-%m-%d'),
-                    Interval=energy.index[i].strftime('%H%M')
+                    Time=energy.index[i].strftime('%Y-%m-%d-%H-%M')
                 ) for i, obs in enumerate(energy[building])
             ]
             length = len(observations)

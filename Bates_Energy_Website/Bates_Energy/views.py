@@ -5,6 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.urls import reverse
 from .forms import *
+from django.contrib.admin.views.decorators import staff_member_required
+
 import os
 import json
 
@@ -27,7 +29,7 @@ def processed_data(request, name):
     data = serializers.serialize(
         'python',
         Observation.objects.filter(building=name),
-        fields=('Interval', 'Quantity', 'Day')
+        fields=('Quantity', 'Time')
     )
     actual_data = [d['fields'] for d in data]
 
@@ -42,6 +44,7 @@ def processed_data(request, name):
 #     return render(request, 'Bates_Energy/index2.html', context)
 
 
+@staff_member_required
 def import_data(request):
     if request.method == "POST":
         form = DataInput(request.POST, request.FILES)

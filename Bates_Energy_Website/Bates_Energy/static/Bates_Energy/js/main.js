@@ -67,12 +67,11 @@ function updateBars(name) {
     var parseTime = d3.time.format('%Y-%m-%d-%H-%M').parse;
 
     data.forEach(function (d) {
-      d.Day = parseTime(d.Day + '-' + d.Interval[0] + d.Interval[1] + '-' + d.Interval[2] + d.Interval[3]);
-      d.Quantity = +d.Quantity;
+      d.Time = parseTime(d.Time);
     });
 
     data.sort(function(a, b) {
-      return a.Day - b.Day;
+      return a.Time - b.Time;
     });
 
     makeVis(data);
@@ -90,7 +89,7 @@ function updateBars(name) {
     var parseTime = d3.time.format('%Y-%m-%d-%H-%M').parse;
 
     // //added for mousehover
-    // var bisectDate = d3.bisector(function(d) { return d.Day; }).left,
+    // var bisectDate = d3.bisector(function(d) { return d.Time; }).left,
     //     formatValue = d3.format(",.2f"),
     //     formatData = function(d) { return formatValue(d) + " kWh"; };
     // //
@@ -110,13 +109,13 @@ function updateBars(name) {
 
     var area = d3.svg.area()
         .interpolate("step-after")
-        .x(function(d) { return x(d.Day); })
+        .x(function(d) { return x(d.Time); })
         .y0(height)
         .y1(function(d) { return y(d.Quantity); });
 
     var area2 = d3.svg.area()
         .interpolate("step-after")
-        .x(function(d) { return x2(d.Day); })
+        .x(function(d) { return x2(d.Time); })
         .y0(height2)
         .y1(function(d) { return y2(d.Quantity); });
 
@@ -141,7 +140,7 @@ function updateBars(name) {
         .attr("class", "context")
         .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-    x.domain(d3.extent(data.map(function(d) { return d.Day; })));
+    x.domain(d3.extent(data.map(function(d) { return d.Time; })));
     y.domain([0, d3.max(data.map(function(d) { return d.Quantity; }))]);
     x2.domain(x.domain());
     y2.domain(y.domain());
@@ -239,9 +238,9 @@ function updateBars(name) {
     //             d1 = data[i],
     //             d = x0 - d0.date > d1.date - x0 ? d1 : d0;
     //
-    //     console.log(d.Day, d.Quantity);
+    //     console.log(d.Time, d.Quantity);
     //
-    //     xy.attr("transform", "translate(" + x(d.Day) + "," + y(d.Quantity) + ")");
+    //     xy.attr("transform", "translate(" + x(d.Time) + "," + y(d.Quantity) + ")");
     //     xy.select("text").text(formatData(d.Quantity));
     //
     // }
