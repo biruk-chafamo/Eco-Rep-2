@@ -48,6 +48,7 @@ def processed_data(request, name):
 def import_data(request):
     if request.method == "POST":
         form = DataInput(request.POST, request.FILES)
+        # TODO: redefine is_valid() to validate CSV
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('Bates_Energy:index'))

@@ -3,10 +3,14 @@ from .models import *
 import pandas as pd
 import numpy as np
 from fuzzywuzzy import process
+from django.forms import ClearableFileInput
 
 
 class DataInput(forms.Form):
     file = forms.FileField()
+
+    class Meta:
+        widgets = ClearableFileInput(attrs={'multiple': True})
 
     def rename_columns(self, data, column_names):
         subs = {}
