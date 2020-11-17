@@ -7,10 +7,7 @@ from django.forms import ClearableFileInput
 
 
 class DataInput(forms.Form):
-    file = forms.FileField()
-
-    class Meta:
-        widgets = ClearableFileInput(attrs={'multiple': True})
+    files = forms.FileField(widget=ClearableFileInput(attrs={'multiple': True}))
 
     def rename_columns(self, data, column_names):
         subs = {}
@@ -37,7 +34,7 @@ class DataInput(forms.Form):
                     avg = (data[column][i - 1] + data[column][j]) / 2
                     data[column][i:j] = [avg for _ in range(i, j)]
 
-    def save(self):
+    def save(self, energy):
         building_names = ['Adams', 'Bertram', 'Carnegie', 'Chapel', 'Chase', 'Pettigrew', 'Rzasa', 'Libbey', 'Page',
                           'Rand', 'Schaeffer', 'Lane', 'LaddLibrary', 'Hathorn', 'Parker', 'Cheney', 'Dana',
                           'Underhill', 'UnderhillIce', 'Olin', 'Pettengill']
@@ -46,7 +43,7 @@ class DataInput(forms.Form):
                       'LaddLibrary': 300, 'Hathorn': 50, 'Parker': 50, 'Cheney': 50, 'Dana': 300, 'Underhill': 1000,
                       'UnderhillIce': 1000, 'Olin': 200, 'Pettengill': 400}
 
-        energy = pd.read_csv(self.cleaned_data["file"], index_col=0)
+        # energy = pd.read_csv(self.cleaned_data["file"], index_col=0)
         energy.rename(columns=lambda x: x.split(' (')[0], inplace=True)
 
         self.rename_columns(energy, building_names)
@@ -61,8 +58,9 @@ class DataInput(forms.Form):
             observations = [
                 Observation(
                     building=building,
-                    Quantity=obs,
-                    Time=energy.index[i].strftime('%Y-%m-%d-%H-%M')
+                    quantity=obs,
+                    date_time=energy.index[i],
+                    string_time=energy.index[i].strftime('%Y-%m-%d-%H-%M')
                 ) for i, obs in enumerate(energy[building])
             ]
             length = len(observations)
@@ -78,6 +76,8 @@ class DataInput(forms.Form):
                 Observation.objects.bulk_create(observations[start:min(end, length)])
                 start, end = min(end, length), min(end+999, length)
 
-
-
-
+    # def save(self):
+    #     for file in self.cleaned_data["file"]:
+    #         energy = pd.read_csv(file, index_col=0)
+    #         self.upload(energy)
+    #
