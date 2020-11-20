@@ -119,7 +119,7 @@ svg {
 }
 
 select {
-  height: 25px;
+  height: 80px;
   width: 250px;
   font-size: 15px;
   color: #881124;
@@ -154,6 +154,11 @@ select {
     stroke: black;
 
 }
+
+#dropdown_buildings_years {
+    height: 25px;
+}
+
 
 /******************************************
 * Metric Modal Chart (Views, Downloads, Citations)
