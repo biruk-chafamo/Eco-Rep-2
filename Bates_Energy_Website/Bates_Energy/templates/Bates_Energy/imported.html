@@ -1,32 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static 'Bates_Energy/css/index.css' %}?{% now 'U' %}"/>
-    <title>import Energy Data</title>
+    <meta charset="UTF-8">
+    <title>import csv</title>
 </head>
 <body>
-
-    <div class="instructions">
-      <ul>
-        <li>Oldest record: {{oldest_date}}</li>
-        <li>Latest record: {{latest_date}}</li>
-    </ul>
-    </div>
-    <div class="instructions" style="margin-top:10px">
-<!--        <form action="{% url 'Bates_Energy:import_data' %}" method="post" enctype="multipart/form-data">-->
-<!--            {% csrf_token %}-->
-<!--          <label for="files">Select files:</label>-->
-<!--          <input type="file" id="files" name="files" multiple><br><br>-->
-<!--          <input type="submit">-->
-<!--        </form>-->
-        <form  action="{% url 'Bates_Energy:import_data' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ csv_upload_form }}
-                <input type="submit" value="Upload">
-        </form>
-    </div>
+<form action="{% url 'Bates_Energy:import_data' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ csv_upload_form }}
+        <input type="submit" value="Upload">
+</form>
 </body>
 </html>
